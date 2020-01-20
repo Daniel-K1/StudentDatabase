@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dyplomowanie</title>
+</head>
+<body>
+
+<div th:switch="${students}">
+    <h2 th:case="null">No students yet!</h2>
+    <div th:case="*">
+        <h2>Students</h2>
+        <hr width="15%" align="left">
+        <table>
+            <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td><a th:href="@{/showthesis/{id}(id=${student.id})}">Show all thesis</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

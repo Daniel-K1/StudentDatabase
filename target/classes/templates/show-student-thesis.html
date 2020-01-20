@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thesis</title>
+    <link rel="stylesheet" type="text/css" href="/mystyle.css" media="screen, projection" />
+
+</head>
+<body>
+
+<h2 th:text="${student.firstName + ' ' + student.lastName}"></h2>
+<h3 th:text="${'all thesis'}"></h3>
+<table border="1" cellpadding="0" >
+    <thead>
+    <tr>
+        <th bgcolor="#c5e5e8">Topic</th>
+        <th bgcolor="#c5e5e8">Summary</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="thesis : ${student.thesisSet}">
+        <td th:text="${thesis.topic}" width="300"></td>
+        <td th:text="${thesis.summary}" width="700"></td>
+        <td width="150"><a th:href="@{/showthesisdetails/{id}(id=${thesis.id})}">Show thesis details</a></td>
+    </tr>
+    </tbody>
+</table>
+<br><br><br>
+<a th:href="@{/}">Back to student list</a>
+</body>
+</html>

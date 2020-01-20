@@ -1,0 +1,126 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thesis details</title>
+    <link rel="stylesheet" type="text/css" href="/mystyle.css" media="screen, projection" />
+
+</head>
+
+<body>
+<h2 th:text="${thesis.topic}"></h2>
+<h3 th:text="'Praca ' + ${thesis.thesisType.thesisType}"></h3>
+
+<br>
+<h3 >AUTORS</h3>
+<hr width="50%" align="left">
+
+<table>
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${thesis.studentSet}">
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td><a th:href="@{/showthesis/{id}(id=${student.id})}">Show student all thesis</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>PROMOTER</h3>
+<hr width="50%" align="left">
+
+<table>
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Academic degree</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${thesis.employee.firstName}"></td>
+        <td th:text="${thesis.employee.lastName}"></td>
+        <td th:text="${thesis.employee.academicDegree.degreeName}"></td>
+        <td><a th:href="@{/showemployeethesis/{id}(id=${thesis.employee.id})}">Show all promoted thesis</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>KEYWORDS</h3>
+<hr width="50%" align="left">
+
+<table>
+    <thead>
+    <tr>
+        <th>Keyword</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="keyword : ${thesis.keywordSet}">
+        <td th:text="${keyword.name}"></td>
+        <td><a th:href="@{/showthesiswithkeyword/{id}(id=${keyword.id})}">also sharing this keyword</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<h3>REVIEWERS</h3>
+<hr width="50%" align="left">
+
+<table>
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Degree</th>
+        <th>Comment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review : ${thesis.reviewSet}">
+        <td th:text="${review.employee.firstName}"></td>
+        <td th:text="${review.employee.lastName}"></td>
+        <td th:text="${review.reviewDegree}"></td>
+        <td th:text="${review.comment}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<h3>RELATED EXAMS</h3>
+<hr width="50%" align="left">
+<table>
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Date</th>
+        <th>Final degree</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="exam : ${thesis.examSet}">
+        <td th:text="${exam.student.firstName}"></td>
+        <td th:text="${exam.student.lastName}"></td>
+        <td th:text="${exam.date}"></td>
+        <td th:text="${exam.finalDegree}"></td>
+    </tr>
+    </tbody>
+</table>
+<br><br><br>
+<a th:href="@{/}">Back to student list</a>
+</body>
+</html>
