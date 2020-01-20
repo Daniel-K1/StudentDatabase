@@ -1,0 +1,19 @@
+body {
+}
+
+h1 {
+  color: navy;
+  margin-left: 20px;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+th {
+background-color: #c5e5e8;
+}
+
+table {
+    border-collapse: collapse;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/mystyle.css" media="screen, projection" />
+
+</head>
+<body>
+
+<h2 th:text="${'All thesis with Keyword <' +keyword.name + '>'}"></h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Topic</th>
+        <th>Summary</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="thesis : ${keyword.thesisSet}">
+        <td th:text="${thesis.topic}" width="300"></td>
+        <td th:text="${thesis.summary}" width="700"></td>
+        <td><a th:href="@{/showthesisdetails/{id}(id=${thesis.id})}" width="150">Show thesis details</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
